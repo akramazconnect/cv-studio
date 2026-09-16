@@ -8,11 +8,11 @@ import type { Plugin } from 'vite'
  * Runs inside the Vite dev server, so it only ever exists on your machine.
  *
  *   GET  /__api/status   → git branch / remote / dirty state
- *   POST /__api/save     → writes the current editor state to src/content/saved.json
- *   POST /__api/deploy   → save + git add/commit/push  (GitHub Actions then publishes)
+ *   POST /__api/save     → writes the editor state to src/content/local.json (git-ignored, never published)
+ *   POST /__api/deploy   → git add/commit/push of the app code only (GitHub Actions then publishes)
  */
 
-const SAVED_FILE = 'src/content/saved.json'
+const LOCAL_FILE = 'src/content/local.json'
 
 const git = (cwd: string, args: string[]) =>
   execFileSync('git', args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim()
@@ -63,7 +63,7 @@ export default function devApi(): Plugin {
       }
 
       const save = (state: unknown) => {
-        const file = resolve(root, SAVED_FILE)
+        const file = resolve(root, LOCAL_FILE)
         mkdirSync(dirname(file), { recursive: true })
         writeFileSync(file, JSON.stringify(state, null, 2) + '\n', 'utf8')
       }
@@ -76,13 +76,15 @@ export default function devApi(): Plugin {
 
           if (req.method !== 'POST') return json(res, 405, { error: 'POST only' })
           const body = JSON.parse((await readBody(req)) || '{}') as { state?: unknown; message?: string; remote?: string }
+          const ignored = tryGit(root, ['check-ignore', LOCAL_FILE]) !== ''
 
           if (req.url === '/__api/save') {
             save(body.state ?? {})
-            return json(res, 200, { ok: true, log: [`Saved ${SAVED_FILE}`] })
+            return json(res, 200, { ok: true, log: [`Saved ${LOCAL_FILE}`] })
           }
 
           if (req.url === '/__api/deploy') {
+            if (!ignored) return json(res, 400, { error: 'LOCAL_NOT_IGNORED', log: [`${LOCAL_FILE} must be git-ignored`] })
             if (body.remote && !tryGit(root, ['remote', 'get-url', 'origin'])) {
               git(root, ['remote', 'add', 'origin', body.remote])
               log.push(`Remote added: ${body.remote}`)
@@ -90,8 +92,7 @@ export default function devApi(): Plugin {
             if (!tryGit(root, ['remote', 'get-url', 'origin'])) {
               return json(res, 400, { error: 'NO_REMOTE', log })
             }
-            save(body.state ?? {})
-            log.push(`Saved ${SAVED_FILE}`)
+            // Personal data is never staged: local.json is git-ignored.
             git(root, ['add', '-A'])
             if (tryGit(root, ['status', '--porcelain']) !== '') {
               const msg = body.message || `Update CV — ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`

@@ -17,6 +17,7 @@ interface State {
   update: (patch: (d: CVData) => CVData) => void
   updateTheme: (patch: Partial<Theme>) => void
   reset: () => void
+  importAll: (payload: { data?: State['data']; themes?: State['themes'] }) => void
 }
 
 export const useCV = create<State>()(
@@ -39,6 +40,7 @@ export const useCV = create<State>()(
         const current = themes[variant] ?? defaultTheme(variant)
         set({ themes: { ...themes, [variant]: { ...current, ...patch } } })
       },
+      importAll: ({ data, themes }) => set({ data: data ?? {}, themes: themes ?? {} }),
       reset: () => {
         const { variant, lang, data, themes } = get()
         const next = { ...data }

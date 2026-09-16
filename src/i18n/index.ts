@@ -108,6 +108,13 @@ export type Dict = {
     done: string
     failed: string
   }
+  backup: {
+    title: string
+    export: string
+    import: string
+    imported: string
+    invalid: string
+  }
 }
 
 export const ui: Record<Lang, Dict> = {
@@ -193,9 +200,9 @@ export const ui: Record<Lang, Dict> = {
     deploy: {
       button: 'Publier',
       title: 'Publier en ligne',
-      intro: 'Enregistre vos modifications dans le projet, puis les envoie sur GitHub. GitHub Pages met le site à jour en ~1 min.',
-      save: 'Enregistrer localement',
-      saved: 'Enregistré dans src/content/saved.json',
+      intro: 'Publie l’application (code uniquement) sur GitHub ; vos informations personnelles ne quittent jamais cet ordinateur. GitHub Pages met le site à jour en ~1 min.',
+      save: 'Garder mes infos sur ce PC',
+      saved: 'Enregistré dans src/content/local.json (jamais publié)',
       publish: 'Publier sur GitHub',
       publishing: 'Publication…',
       branch: 'Branche',
@@ -210,6 +217,13 @@ export const ui: Record<Lang, Dict> = {
       openRepo: 'Ouvrir le dépôt',
       done: 'Publié ! Le site sera à jour dans une minute.',
       failed: 'Échec — voir le journal ci-dessous.',
+    },
+    backup: {
+      title: 'Sauvegarde',
+      export: 'Exporter (JSON)',
+      import: 'Importer',
+      imported: 'Données importées.',
+      invalid: 'Fichier invalide.',
     },
   },
   en: {
@@ -294,9 +308,9 @@ export const ui: Record<Lang, Dict> = {
     deploy: {
       button: 'Publish',
       title: 'Publish online',
-      intro: 'Saves your edits into the project, then pushes to GitHub. GitHub Pages updates the site in ~1 min.',
-      save: 'Save locally',
-      saved: 'Saved to src/content/saved.json',
+      intro: 'Publishes the app (code only) to GitHub; your personal details never leave this computer. GitHub Pages updates the site in ~1 min.',
+      save: 'Keep my details on this PC',
+      saved: 'Saved to src/content/local.json (never published)',
       publish: 'Publish to GitHub',
       publishing: 'Publishing…',
       branch: 'Branch',
@@ -311,6 +325,13 @@ export const ui: Record<Lang, Dict> = {
       openRepo: 'Open repository',
       done: 'Published! The site will be live in about a minute.',
       failed: 'Failed — see the log below.',
+    },
+    backup: {
+      title: 'Backup',
+      export: 'Export (JSON)',
+      import: 'Import',
+      imported: 'Data imported.',
+      invalid: 'Invalid file.',
     },
   },
   ar: {
@@ -395,9 +416,9 @@ export const ui: Record<Lang, Dict> = {
     deploy: {
       button: 'نشر',
       title: 'النشر على الإنترنت',
-      intro: 'يحفظ تعديلاتك داخل المشروع ثم يرفعها إلى GitHub. يحدّث GitHub Pages الموقع خلال دقيقة تقريبًا.',
-      save: 'حفظ محليًا',
-      saved: 'تم الحفظ في src/content/saved.json',
+      intro: 'ينشر التطبيق (الكود فقط) على GitHub؛ معلوماتك الشخصية لا تغادر هذا الحاسوب أبدًا. يحدّث GitHub Pages الموقع خلال دقيقة تقريبًا.',
+      save: 'الاحتفاظ بمعلوماتي على هذا الحاسوب',
+      saved: 'تم الحفظ في src/content/local.json (لا يُنشر أبدًا)',
       publish: 'النشر على GitHub',
       publishing: 'جارٍ النشر…',
       branch: 'الفرع',
@@ -412,6 +433,13 @@ export const ui: Record<Lang, Dict> = {
       openRepo: 'فتح المستودع',
       done: 'تم النشر! سيكون الموقع محدّثًا خلال دقيقة.',
       failed: 'فشل — انظر السجل أدناه.',
+    },
+    backup: {
+      title: 'نسخة احتياطية',
+      export: 'تصدير (JSON)',
+      import: 'استيراد',
+      imported: 'تم استيراد البيانات.',
+      invalid: 'ملف غير صالح.',
     },
   },
 }

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { ImagePlus, RotateCcw, X } from 'lucide-react'
+import { Download, ImagePlus, RotateCcw, Upload, X } from 'lucide-react'
 import { useCV, useCurrentData, useCurrentTheme } from '../../store/useCV'
 import { ui } from '../../i18n'
 import { VARIANTS } from '../../variants'
@@ -18,6 +18,8 @@ export default function Editor() {
   const update = useCV((s) => s.update)
   const updateTheme = useCV((s) => s.updateTheme)
   const reset = useCV((s) => s.reset)
+  const importAll = useCV((s) => s.importAll)
+  const backupRef = useRef<HTMLInputElement>(null)
   const data = useCurrentData()
   const theme = useCurrentTheme()
   const t = ui[lang]
@@ -73,6 +75,29 @@ export default function Editor() {
       img.src = reader.result as string
     }
     reader.readAsDataURL(file)
+  }
+
+  const exportBackup = () => {
+    const { data: all, themes } = useCV.getState()
+    const blob = new Blob([JSON.stringify({ data: all, themes }, null, 2)], { type: 'application/json' })
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = `cv-studio-backup-${new Date().toISOString().slice(0, 10)}.json`
+    a.click()
+    URL.revokeObjectURL(a.href)
+  }
+  const importBackup = (file?: File) => {
+    if (!file) return
+    file.text().then((txt) => {
+      try {
+        const j = JSON.parse(txt) as { data?: unknown; themes?: unknown }
+        if (!j || typeof j !== 'object' || (!j.data && !j.themes)) throw new Error()
+        importAll(j as Parameters<typeof importAll>[0])
+        alert(t.backup.imported)
+      } catch {
+        alert(t.backup.invalid)
+      }
+    })
   }
 
   const exp = list('experiences')
@@ -134,10 +159,22 @@ export default function Editor() {
             </button>
           </div>
         </Row>
-        <button type="button" onClick={() => confirm(t.resetConfirm) && reset()} className="flex items-center gap-1.5 self-start text-[12px] font-semibold text-muted transition hover:text-red-600">
-          <RotateCcw className="h-3.5 w-3.5" />
-          {t.reset}
-        </button>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+          <button type="button" onClick={() => confirm(t.resetConfirm) && reset()} className="flex items-center gap-1.5 text-[12px] font-semibold text-muted transition hover:text-red-600">
+            <RotateCcw className="h-3.5 w-3.5" />
+            {t.reset}
+          </button>
+          <span className="ms-auto flex items-center gap-3 text-[12px] font-semibold text-muted">
+            <span className="text-[11px] uppercase tracking-wide text-muted/70">{t.backup.title}</span>
+            <button type="button" onClick={exportBackup} className="flex items-center gap-1 transition hover:text-ink">
+              <Download className="h-3.5 w-3.5" /> {t.backup.export}
+            </button>
+            <button type="button" onClick={() => backupRef.current?.click()} className="flex items-center gap-1 transition hover:text-ink">
+              <Upload className="h-3.5 w-3.5" /> {t.backup.import}
+            </button>
+            <input ref={backupRef} type="file" accept="application/json" className="hidden" onChange={(e) => { importBackup(e.target.files?.[0]); e.target.value = '' }} />
+          </span>
+        </div>
       </Group>
 
       {/* Personal */}

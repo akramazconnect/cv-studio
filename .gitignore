@@ -6,3 +6,6 @@ dist-ssr
 
 .shots
 *.tsbuildinfo
+
+# Personal data stays on this machine
+src/content/local.json

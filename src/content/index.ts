@@ -4,22 +4,25 @@ import { fr } from './fr'
 import { en } from './en'
 import { ar } from './ar'
 import type { LangContent } from './schema'
-import saved from './saved.json'
 
 const content: Record<Lang, LangContent> = { fr, en, ar }
 
 const withIds = <T extends object>(items: T[]) => items.map((item) => ({ ...item, id: uid() }))
 
-type Saved = { data: Partial<Record<`${VariantId}:${Lang}`, CVData>>; themes: Partial<Record<VariantId, Theme>> }
-const SAVED = saved as Saved
+type Saved = { data?: Partial<Record<`${VariantId}:${Lang}`, CVData>>; themes?: Partial<Record<VariantId, Theme>> }
 
-/** Theme published with the last deploy, if any */
-export const savedTheme = (variant: VariantId): Theme | undefined => SAVED.themes[variant]
+// src/content/local.json is git-ignored: it holds the owner's personal profile on this
+// machine only. The glob resolves to {} when the file doesn't exist (e.g. on GitHub).
+const localModules = import.meta.glob<{ default: Saved }>('./local.json', { eager: true })
+const LOCAL: Saved = Object.values(localModules)[0]?.default ?? {}
+
+/** Theme saved locally on this machine, if any */
+export const savedTheme = (variant: VariantId): Theme | undefined => LOCAL.themes?.[variant]
 
 export function buildDefault(variant: VariantId, lang: Lang): CVData {
-  // Content published via the Deploy panel wins over the built-in samples.
-  const published = SAVED.data[`${variant}:${lang}`]
-  if (published) return structuredClone(published)
+  // The owner's local profile wins over the built-in placeholder content.
+  const local = LOCAL.data?.[`${variant}:${lang}`]
+  if (local) return structuredClone(local)
 
   const base = content[lang]
   const v = base.variants[variant]

@@ -2,14 +2,14 @@ import type { LangContent } from './schema'
 
 export const ar: LangContent = {
   personal: {
-    firstName: 'أكرم',
-    lastName: 'AZ',
-    email: 'wasslconnect@gmail.com',
+    firstName: 'الاسم',
+    lastName: 'النسب',
+    email: 'prenom.nom@email.com',
     phone: '+212 6 00 00 00 00',
     location: 'الدار البيضاء، المغرب',
     website: '',
-    linkedin: 'linkedin.com/in/akram-az',
-    github: 'github.com/akram-az',
+    linkedin: 'linkedin.com/in/prenom-nom',
+    github: 'github.com/prenom-nom',
   },
   education: [
     {

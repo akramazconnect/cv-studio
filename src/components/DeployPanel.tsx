@@ -56,7 +56,7 @@ export default function DeployPanel() {
       const r = await fetch(`/__api/${kind}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state: snapshot(), remote: remoteInput.trim() || undefined }),
+        body: JSON.stringify(kind === 'save' ? { state: snapshot() } : { remote: remoteInput.trim() || undefined }),
       })
       const j = (await r.json()) as { ok?: boolean; log?: string[]; error?: string }
       const ok = !!j.ok
