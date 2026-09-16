@@ -1,0 +1,194 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Manrope', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', 'IBM Plex Sans Arabic', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Manrope', system-ui, sans-serif;
+
+  --color-canvas: #f4f3ef;
+  --color-surface: #ffffff;
+  --color-ink: #1b1a18;
+  --color-ink-2: #4b4844;
+  --color-muted: #7d7973;
+  --color-line: #e7e4de;
+  --color-line-2: #d8d4cc;
+  --color-soft: #faf9f6;
+}
+
+:root {
+  --accent: #5b9a8b;
+  --accent-soft: color-mix(in oklab, var(--accent) 12%, white);
+  --accent-softer: color-mix(in oklab, var(--accent) 6%, white);
+  --accent-ink: color-mix(in oklab, var(--accent) 70%, black);
+  --cv-fs: 10.5pt;
+  --cv-gap: 1;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+[dir='rtl'] body,
+[dir='rtl'] {
+  font-family: var(--font-arabic);
+}
+
+#root {
+  height: 100%;
+}
+
+/* ---------- A4 page ---------- */
+.cv-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  color: var(--color-ink);
+  font-size: var(--cv-fs);
+  line-height: 1.4;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 12px 40px -12px rgb(27 26 24 / 0.18);
+  overflow-wrap: anywhere;
+  hyphens: manual;
+}
+
+.cv-page[dir='rtl'] {
+  font-family: var(--font-arabic);
+  line-height: 1.55;
+}
+
+.cv-page[dir='rtl'] .font-serif {
+  font-family: var(--font-arabic);
+}
+
+.cv-page[dir='rtl'] .font-mono {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+}
+
+.cv-page[dir='rtl'] .cv-caps {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.85em;
+}
+
+.cv-page[dir='rtl'] .cv-name {
+  letter-spacing: 0;
+}
+
+/* Section spacing scales with density */
+.cv-section {
+  margin-top: calc(1.6em * var(--cv-gap));
+}
+.cv-section:first-child {
+  margin-top: 0;
+}
+.cv-item {
+  margin-top: calc(0.9em * var(--cv-gap));
+  break-inside: avoid;
+}
+.cv-item:first-of-type {
+  margin-top: calc(0.4em * var(--cv-gap));
+}
+.cv-caps {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cv-name {
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Editor field polish ---------- */
+.field {
+  @apply w-full rounded-lg border border-line bg-white px-3 py-2 text-[13px] text-ink outline-none transition;
+}
+.field:hover {
+  border-color: var(--color-line-2);
+}
+.field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.field::placeholder {
+  color: #b3afa8;
+}
+textarea.field {
+  resize: vertical;
+  min-height: 74px;
+  line-height: 1.5;
+}
+.label {
+  @apply mb-1 block text-[11px] font-semibold tracking-wide text-muted uppercase;
+}
+[dir='rtl'] .label {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 12px;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #d8d4cc transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: #d8d4cc;
+  border-radius: 8px;
+}
+
+/* ---------- Print ---------- */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body,
+  #root {
+    height: auto !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .app-shell {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .preview-canvas {
+    padding: 0 !important;
+    overflow: visible !important;
+    background: white !important;
+    height: auto !important;
+    display: block !important;
+  }
+  .preview-frame,
+  .preview-scaler {
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+  .cv-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    width: 210mm !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
