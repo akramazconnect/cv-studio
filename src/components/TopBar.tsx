@@ -21,7 +21,7 @@ export default function TopBar() {
   }
 
   return (
-    <header className="no-print flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-line bg-surface/80 px-4 py-2.5 backdrop-blur lg:flex-nowrap lg:px-5">
+    <header className="no-print relative z-30 flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-line bg-surface/80 px-4 py-2.5 backdrop-blur lg:flex-nowrap lg:px-5">
       <div className="flex items-center gap-2.5">
         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink text-white">
           <FileText className="h-4 w-4" />

@@ -3,14 +3,29 @@
 Premium, minimal CV builder with live A4 preview and vector PDF export.
 Four variants · three languages (FR / EN / AR with full RTL) · one profile.
 
-## Run
+## Run (one click)
 
-```bash
-npm install
-npm run dev
-```
+Double-click **`CV Studio.cmd`** (or the *CV Studio* shortcut on the Desktop).
+It installs dependencies the first time, starts the local server and opens the
+browser. Close the window to stop.
 
-Open http://localhost:5173. Deep links work: `?v=tech&l=ar`.
+Manual: `npm install` then `npm run start`. Deep links work: `?v=tech&l=ar`.
+
+## Publish (one click, local only)
+
+The **Publier** button in the top bar (only visible when running locally):
+
+1. *Enregistrer localement* — writes your current edits (all variants and
+   languages, photo included) to `src/content/saved.json`, so the built site
+   ships with them.
+2. *Publier sur GitHub* — same, then `git add / commit / push`. The GitHub
+   Actions workflow in `.github/workflows/deploy.yml` builds and publishes to
+   GitHub Pages (`https://<user>.github.io/<repo>/`).
+
+First-time setup: create a public repository on GitHub, paste its URL in the
+panel, publish, then in the repo go to **Settings → Pages → Source: GitHub
+Actions**. For a custom domain (e.g. `cv.akramaz.com`) add it in the same Pages
+settings; the build uses a relative base so nothing else changes.
 
 ## Variants
 
