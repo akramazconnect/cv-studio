@@ -1,24 +1,16 @@
-import { Download, FileText } from 'lucide-react'
-import { useCV, useCurrentData } from '../store/useCV'
+import { FileText } from 'lucide-react'
+import { useCV } from '../store/useCV'
 import { LANGS, ui } from '../i18n'
 import { VARIANTS } from '../variants'
 import DeployPanel from './DeployPanel'
+import ExportMenu from './ExportMenu'
 
 export default function TopBar() {
   const lang = useCV((s) => s.lang)
   const variant = useCV((s) => s.variant)
   const setLang = useCV((s) => s.setLang)
   const setVariant = useCV((s) => s.setVariant)
-  const data = useCurrentData()
   const t = ui[lang]
-
-  const exportPdf = () => {
-    const name = [data.personal.firstName, data.personal.lastName].filter(Boolean).join('_') || 'CV'
-    const prev = document.title
-    document.title = `${name}_CV_${t.variants[variant].name}_${lang.toUpperCase()}`.replace(/\s+/g, '_')
-    window.print()
-    setTimeout(() => (document.title = prev), 500)
-  }
 
   return (
     <header className="no-print relative z-30 flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-line bg-surface/80 px-4 py-2.5 backdrop-blur lg:flex-nowrap lg:px-5">
@@ -73,16 +65,7 @@ export default function TopBar() {
 
       {import.meta.env.DEV && <DeployPanel />}
 
-      <button
-        type="button"
-        onClick={exportPdf}
-        title={t.exportHint}
-        className="flex items-center gap-2 rounded-lg px-3.5 py-2 text-[13px] font-bold text-white shadow-sm transition hover:brightness-110 active:scale-[0.98]"
-        style={{ background: 'var(--accent)' }}
-      >
-        <Download className="h-4 w-4" />
-        {t.export}
-      </button>
+      <ExportMenu />
     </header>
   )
 }

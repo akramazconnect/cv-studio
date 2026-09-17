@@ -13,6 +13,11 @@ export type Dict = {
   tagline: string
   export: string
   exportHint: string
+  exportPdf: string
+  exportDocx: string
+  exportDocxHint: string
+  generating: string
+  exportError: string
   reset: string
   resetConfirm: string
   preview: string
@@ -121,8 +126,13 @@ export const ui: Record<Lang, Dict> = {
   fr: {
     app: 'CV Studio',
     tagline: 'Quatre variantes · trois langues · un profil',
-    export: 'Télécharger en PDF',
-    exportHint: 'Dans la boîte de dialogue, choisissez « Enregistrer au format PDF ».',
+    export: 'Télécharger',
+    exportHint: 'Dans la fenêtre d’impression, choisissez « Enregistrer au format PDF » comme destination.',
+    exportPdf: 'PDF',
+    exportDocx: 'Word / Google Docs',
+    exportDocxHint: 'Fichier .docx — dans Google Docs : Fichier → Ouvrir → Importer.',
+    generating: 'Génération…',
+    exportError: 'La génération a échoué.',
     reset: 'Réinitialiser cette variante',
     resetConfirm: 'Restaurer le contenu par défaut de cette variante dans cette langue ?',
     preview: 'Aperçu',
@@ -229,8 +239,13 @@ export const ui: Record<Lang, Dict> = {
   en: {
     app: 'CV Studio',
     tagline: 'Four variants · three languages · one profile',
-    export: 'Download PDF',
-    exportHint: 'In the dialog, choose “Save as PDF”.',
+    export: 'Download',
+    exportHint: 'In the print window, choose “Save as PDF” as the destination.',
+    exportPdf: 'PDF',
+    exportDocx: 'Word / Google Docs',
+    exportDocxHint: '.docx file — in Google Docs: File → Open → Upload.',
+    generating: 'Generating…',
+    exportError: 'Export failed.',
     reset: 'Reset this variant',
     resetConfirm: 'Restore the default content for this variant in this language?',
     preview: 'Preview',
@@ -337,8 +352,13 @@ export const ui: Record<Lang, Dict> = {
   ar: {
     app: 'CV Studio',
     tagline: 'أربع نسخ · ثلاث لغات · ملف واحد',
-    export: 'تحميل بصيغة PDF',
-    exportHint: 'في نافذة الطباعة، اختر «حفظ بصيغة PDF».',
+    export: 'تحميل',
+    exportHint: 'في نافذة الطباعة، اختر «حفظ بصيغة PDF» كوجهة.',
+    exportPdf: 'PDF',
+    exportDocx: 'Word / Google Docs',
+    exportDocxHint: 'ملف ‎.docx — في Google Docs: ملف ← فتح ← رفع.',
+    generating: 'جارٍ الإنشاء…',
+    exportError: 'فشل التصدير.',
     reset: 'إعادة ضبط هذه النسخة',
     resetConfirm: 'هل تريد استعادة المحتوى الافتراضي لهذه النسخة بهذه اللغة؟',
     preview: 'معاينة',

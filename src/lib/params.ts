@@ -8,3 +8,5 @@ const l = params.get('l')
 export const PARAM_VARIANT = v && ['corporate', 'tech', 'creative', 'startup'].includes(v) ? (v as VariantId) : null
 export const PARAM_LANG = l && ['fr', 'en', 'ar'].includes(l) ? (l as Lang) : null
 export const PRINT_MODE = params.get('print') === '1'
+/** One-shot state id handed over by the local PDF renderer */
+export const STATE_ID = params.get('sid')
