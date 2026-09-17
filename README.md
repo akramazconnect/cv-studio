@@ -32,6 +32,17 @@ panel, publish, then in the repo go to **Settings → Pages → Source: GitHub
 Actions**. For a custom domain add it in the same Pages settings; the build
 uses a relative base so nothing else changes.
 
+## Export
+
+**Télécharger** is a split button:
+
+- **PDF** — locally, the dev server renders the page with the Chrome/Edge
+  installed on the machine and downloads a real vector PDF (selectable text,
+  Arabic shaped correctly). On the public site there is no server, so it opens
+  the print dialog instead: choose *Save as PDF*.
+- **Word / Google Docs** — generates a `.docx` in the browser (works
+  everywhere). Open it in Google Docs via *File → Open → Upload*, or in Word.
+
 ## Stack
 
 Vite · React 19 · TypeScript · Tailwind CSS v4 · Zustand · lucide-react
