@@ -22,5 +22,6 @@ export const defaultTheme = (variant: VariantId): Theme =>
   savedTheme(variant) ?? {
     accent: VARIANTS.find((v) => v.id === variant)!.accent,
     showPhoto: true,
-    density: 'normal',
+    // Opérations is deliberately lean (skills-first, no experience section), so give it more air.
+    density: variant === 'corporate' ? 'airy' : 'normal',
   }

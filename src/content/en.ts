@@ -48,14 +48,6 @@ export const en: LangContent = {
       end: 'Year',
       note: 'About two years of training: networks, Windows environment, maintenance, support',
     },
-    {
-      degree: 'Self-taught graphic design and web creation',
-      school: 'Independent learning: tutorials, practice on personal projects',
-      location: '',
-      start: '2019',
-      end: 'Present',
-      note: '',
-    },
   ],
   languages: [
     { name: 'Arabic', level: 'Native' },
@@ -64,26 +56,20 @@ export const en: LangContent = {
   ],
   variants: {
     corporate: {
-      title: 'Versatile IT Technician — Digital operations & support',
+      title: 'IT Technician — Digital operations & email marketing',
       summary:
-        'Specialised technician in computer networks, comfortable with digital tools and long hours of computer-based work. Rigorous and organised: I follow procedures, handle files and data accurately and learn internal software quickly. My IT training also lets me solve the small technical problems of everyday office work.',
-      experiences: [internship, creativePractice],
+        'Specialised technician in computer networks, comfortable with long hours of computer-based work, file handling and email marketing tools: autoresponders, email sequences, forms, hosting. Rigorous and organised: I follow procedures, check my work and learn internal software quickly.',
+      experiences: [],
       skillGroups: [
-        { name: 'Office & digital tools', skills: ['Windows', 'Microsoft Office / Google Workspace', 'File and data handling', 'Email workflows', 'Data entry and checking'] },
-        { name: 'IT & networks', skills: ['Basic troubleshooting (hardware / software)', 'Software installation and configuration', 'TCP/IP and LAN basics', 'User support'] },
-        { name: 'Creative & web', skills: ['Graphic design (self-taught)', 'HTML / CSS basics', 'Simple website management'] },
-        { name: 'Way of working', skills: ['Following procedures', 'Accuracy and attention to detail', 'Fast learning of internal software', 'AI assistants (Claude, ChatGPT)'] },
+        { name: 'Office & data', skills: ['Windows', 'Microsoft Office / Google Workspace', 'Excel: sorting, filters, CSV files', 'Data entry and checking', 'File and document organisation'] },
+        { name: 'Email marketing & automation', skills: ['Autoresponders', 'Email sequences', 'Contact lists and segmentation (basics)', 'Sign-up forms', 'Landing pages', 'Email templates'] },
+        { name: 'Web & hosting', skills: ['Hosting and domain names', 'DNS configuration (basics)', 'Publishing and testing pages', 'HTML / CSS basics'] },
+        { name: 'IT', skills: ['Software installation and configuration', 'Basic troubleshooting', 'Network basics (TCP/IP, LAN)', 'User support'] },
+        { name: 'Way of working', skills: ['Following procedures', 'Accuracy', 'Sustained computer work', 'Fast learning of internal software', 'AI assistants (Claude, ChatGPT)'] },
       ],
-      projects: [
-        {
-          name: 'Personal web project — content and digital products',
-          description: 'Site structure, page and form creation, content organisation, testing and step-by-step improvements, with the help of AI tools.',
-          link: '',
-          tags: ['Web', 'Content', 'AI'],
-        },
-      ],
+      projects: [],
       certifications: [],
-      interests: ['Digital tools', 'Design', 'Technology & AI'],
+      interests: ['Digital tools', 'Automation', 'Technology & AI'],
     },
     tech: {
       title: 'Computer Networks Technician — Support & maintenance',

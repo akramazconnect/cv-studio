@@ -52,14 +52,6 @@ export const fr: LangContent = {
       end: 'Année',
       note: 'Formation d’environ deux ans : réseaux, environnement Windows, maintenance, support',
     },
-    {
-      degree: 'Autoformation en design graphique et création web',
-      school: 'Apprentissage autonome : tutoriels, pratique sur projets personnels',
-      location: '',
-      start: '2019',
-      end: 'Présent',
-      note: '',
-    },
   ],
   languages: [
     { name: 'Arabe', level: 'Langue maternelle' },
@@ -68,26 +60,20 @@ export const fr: LangContent = {
   ],
   variants: {
     corporate: {
-      title: 'Technicien informatique polyvalent — Opérations numériques & support',
+      title: 'Technicien informatique — Opérations numériques & e-mailing',
       summary:
-        'Technicien spécialisé en réseaux informatiques, à l’aise avec les outils numériques et le travail sur ordinateur sur de longues durées. Rigoureux et organisé, je sais suivre des procédures, traiter des fichiers et des données avec précision et apprendre rapidement un logiciel interne. Ma formation IT me permet en plus de régler les petits problèmes techniques du quotidien.',
-      experiences: [stage, pratiqueCreative],
+        'Technicien spécialisé en réseaux informatiques, à l’aise avec le travail sur ordinateur de longue durée, le traitement de fichiers et les outils d’e-mailing : autorépondeurs, séquences d’e-mails, formulaires, hébergement. Rigoureux et organisé, je suis les procédures, je vérifie mon travail et j’apprends rapidement un logiciel interne.',
+      experiences: [],
       skillGroups: [
-        { name: 'Bureautique & numérique', skills: ['Windows', 'Microsoft Office / Google Workspace', 'Gestion de fichiers et de données', 'Messagerie électronique', 'Saisie et vérification de données'] },
-        { name: 'Informatique & réseaux', skills: ['Dépannage de base (matériel / logiciel)', 'Installation et configuration de logiciels', 'Notions TCP/IP et réseau local', 'Support utilisateurs'] },
-        { name: 'Création & web', skills: ['Design graphique (autodidacte)', 'Notions HTML / CSS', 'Gestion simple de sites web'] },
-        { name: 'Méthode', skills: ['Respect des procédures', 'Précision et attention au détail', 'Apprentissage rapide de logiciels internes', 'Assistants IA (Claude, ChatGPT)'] },
+        { name: 'Bureautique & données', skills: ['Windows', 'Microsoft Office / Google Workspace', 'Excel : tri, filtres, fichiers CSV', 'Saisie et vérification de données', 'Classement de fichiers et de documents'] },
+        { name: 'E-mailing & automatisation', skills: ['Autorépondeurs', 'Séquences d’e-mails', 'Listes de contacts et segmentation (bases)', 'Formulaires d’inscription', 'Landing pages', 'Modèles d’e-mails'] },
+        { name: 'Web & hébergement', skills: ['Hébergement et noms de domaine', 'Configuration DNS (bases)', 'Mise en ligne et test de pages', 'Notions HTML / CSS'] },
+        { name: 'Informatique', skills: ['Installation et configuration de logiciels', 'Dépannage de base', 'Notions réseau (TCP/IP, LAN)', 'Support utilisateurs'] },
+        { name: 'Méthode', skills: ['Respect des procédures', 'Précision', 'Travail prolongé sur ordinateur', 'Apprentissage rapide de logiciels internes', 'Assistants IA (Claude, ChatGPT)'] },
       ],
-      projects: [
-        {
-          name: 'Projet web personnel — contenu et produits numériques',
-          description: 'Structure du site, création de pages et de formulaires, organisation du contenu, tests et améliorations progressives, avec l’aide d’outils IA.',
-          link: '',
-          tags: ['Web', 'Contenu', 'IA'],
-        },
-      ],
+      projects: [],
       certifications: [],
-      interests: ['Outils numériques', 'Design', 'Technologies & IA'],
+      interests: ['Outils numériques', 'Automatisation', 'Technologies & IA'],
     },
     tech: {
       title: 'Technicien Réseaux Informatiques — Support & maintenance',
