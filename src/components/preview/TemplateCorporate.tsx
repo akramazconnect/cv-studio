@@ -70,7 +70,7 @@ export default function TemplateCorporate({ data, t, theme }: TemplateProps) {
 
       {has(data.projects) && (
         <Section titleNode={<Title>{t.sections.projects}</Title>}>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-[0.7em]">
+          <div className={`grid gap-x-8 gap-y-[0.7em] ${data.projects.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
             {data.projects.map((pr) => (
               <div key={pr.id} className="cv-item !mt-0">
                 <h3 className="font-bold">

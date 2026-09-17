@@ -138,10 +138,10 @@ export const ui: Record<Lang, Dict> = {
     preview: 'Aperçu',
     editor: 'Éditeur',
     variants: {
-      corporate: { name: 'Polyvalent', for: 'ECM · E-Transit · Mailing', desc: 'IT réseau & développement, avec une touche de vibe coding.' },
-      tech: { name: 'Infrastructure', for: 'Munisys · GAB / ATM · Monétique', desc: 'Profil 100 % IT : réseaux, systèmes, support N2.' },
-      creative: { name: 'Créatif', for: 'Panneau Design · Agences', desc: 'Design graphique & web design, identité visuelle.' },
-      startup: { name: 'Builder', for: 'Startups · Produit · IA', desc: 'Full-stack & développement assisté par IA.' },
+      corporate: { name: 'Opérations', for: 'Bureautique · Mailing · Back-office', desc: 'Travail sur ordinateur, précision, procédures, base IT.' },
+      tech: { name: 'Technicien IT', for: 'Support · Maintenance · GAB / ATM', desc: 'Diplôme réseaux, dépannage, Windows, support technique.' },
+      creative: { name: 'Graphisme & Web', for: 'Agences · Signalétique · Web', desc: 'Design graphique depuis 2019, web design, visuels.' },
+      startup: { name: 'Digital & IA', for: 'Digital · E-commerce · Startups', desc: 'Projets web, contenu, développement assisté par IA.' },
     },
     sections: {
       profile: 'Profil',
@@ -251,10 +251,10 @@ export const ui: Record<Lang, Dict> = {
     preview: 'Preview',
     editor: 'Editor',
     variants: {
-      corporate: { name: 'Versatile', for: 'ECM · E-Transit · Mailing', desc: 'IT network & development, with a touch of vibe coding.' },
-      tech: { name: 'Infrastructure', for: 'Munisys · ATM / GAB · Payments', desc: 'Pure IT profile: networks, systems, L2 support.' },
-      creative: { name: 'Creative', for: 'Panneau Design · Agencies', desc: 'Graphic & web design, visual identity.' },
-      startup: { name: 'Builder', for: 'Startups · Product · AI', desc: 'Full-stack & AI-assisted development.' },
+      corporate: { name: 'Operations', for: 'Office · Mailing · Back-office', desc: 'Computer-based work, accuracy, procedures, IT foundation.' },
+      tech: { name: 'IT Technician', for: 'Support · Maintenance · ATM / GAB', desc: 'Networks diploma, troubleshooting, Windows, tech support.' },
+      creative: { name: 'Graphic & Web', for: 'Agencies · Signage · Web', desc: 'Graphic design since 2019, web design, visuals.' },
+      startup: { name: 'Digital & AI', for: 'Digital · E-commerce · Startups', desc: 'Web projects, content, AI-assisted development.' },
     },
     sections: {
       profile: 'Profile',
@@ -364,10 +364,10 @@ export const ui: Record<Lang, Dict> = {
     preview: 'معاينة',
     editor: 'المحرر',
     variants: {
-      corporate: { name: 'متعدد المهام', for: 'ECM · E-Transit · البريد', desc: 'شبكات وتطوير، مع لمسة من البرمجة بمساعدة الذكاء الاصطناعي.' },
-      tech: { name: 'البنية التحتية', for: 'Munisys · الصرافات الآلية · النقديات', desc: 'ملف تقني بحت: شبكات، أنظمة، دعم من المستوى الثاني.' },
-      creative: { name: 'إبداعي', for: 'Panneau Design · الوكالات', desc: 'تصميم غرافيكي وتصميم مواقع، هوية بصرية.' },
-      startup: { name: 'بيلدر', for: 'شركات ناشئة · منتجات · ذكاء اصطناعي', desc: 'تطوير متكامل بمساعدة الذكاء الاصطناعي.' },
+      corporate: { name: 'عمليات', for: 'مكتبيات · بريد · مكتب خلفي', desc: 'عمل على الحاسوب، دقة، إجراءات، أساس معلوماتي.' },
+      tech: { name: 'تقني معلوميات', for: 'دعم · صيانة · صرافات آلية', desc: 'دبلوم شبكات، تشخيص الأعطال، Windows، دعم تقني.' },
+      creative: { name: 'غرافيك وويب', for: 'وكالات · لافتات · ويب', desc: 'تصميم غرافيكي منذ 2019، تصميم مواقع، مرئيات.' },
+      startup: { name: 'رقمي وذكاء اصطناعي', for: 'رقمي · تجارة إلكترونية · شركات ناشئة', desc: 'مشاريع ويب، محتوى، تطوير بمساعدة الذكاء الاصطناعي.' },
     },
     sections: {
       profile: 'نبذة',
