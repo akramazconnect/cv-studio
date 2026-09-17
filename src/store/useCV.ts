@@ -20,6 +20,29 @@ interface State {
   importAll: (payload: { data?: State['data']; themes?: State['themes'] }) => void
 }
 
+// v1 shipped invented sample employers; used by the persist migration below.
+// Must be declared before the store: hydration runs synchronously at module load.
+const LEGACY_MARKERS = [
+  'Société de logistique et messagerie',
+  'Prestataire de services IT',
+  'Banque / Établissement financier',
+  'Clients PME, commerces et associations',
+  'Agence de communication',
+  'Startups & porteurs de projets',
+  'Logistics & courier company',
+  'IT services provider',
+  'Bank / Financial institution',
+  'SMEs, retail and non-profit clients',
+  'Communication agency',
+  'Startups & founders',
+  'شركة لوجستيك ونقل البريد',
+  'مزود خدمات معلوماتية',
+  'بنك / مؤسسة مالية',
+  'مقاولات صغيرة، محلات تجارية وجمعيات',
+  'وكالة تواصل',
+  'شركات ناشئة وأصحاب مشاريع',
+]
+
 export const useCV = create<State>()(
   persist(
     (set, get) => ({
@@ -50,7 +73,20 @@ export const useCV = create<State>()(
         set({ data: next, themes: nextThemes })
       },
     }),
-    { name: 'cv-studio-v1' },
+    {
+      name: 'cv-studio-v1',
+      version: 2,
+      // v1 shipped invented sample employers. Any stored entry that still carries one of
+      // them is stale sample data, not a user's own CV — drop it so the new defaults show.
+      migrate: (persisted, version) => {
+        const state = persisted as Partial<State>
+        if (version < 2 && state.data) {
+          const stale = (entry: CVData) => LEGACY_MARKERS.some((m) => JSON.stringify(entry).includes(m))
+          state.data = Object.fromEntries(Object.entries(state.data).filter(([, v]) => v && !stale(v)))
+        }
+        return state as State
+      },
+    },
   ),
 )
 
