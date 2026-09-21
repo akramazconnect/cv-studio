@@ -16,17 +16,17 @@ export default function TemplateCorporate({ data, t, theme }: TemplateProps) {
   return (
     <div className="px-[15mm] py-[13mm]">
       {/* Header */}
-      <header className="flex items-start justify-between gap-8">
-        <div className="flex items-center gap-5">
-          {theme.showPhoto && <Photo src={p.photo} className="h-[64px] w-[64px] rounded-full" />}
-          <div>
-            <h1 className="cv-name text-[2.5em] font-extrabold leading-[1.05]">{fullName(p)}</h1>
-            <p className="mt-[0.35em] text-[1.08em] font-medium" style={{ color: 'var(--accent-ink)' }}>
+      <header className="flex items-center justify-between gap-8">
+        <div className="flex min-w-0 flex-1 items-center gap-5">
+          {theme.showPhoto && <Photo src={p.photo} className="h-[68px] w-[68px] shrink-0 rounded-full" />}
+          <div className="min-w-0">
+            <h1 className="cv-name text-[2.4em] font-extrabold leading-[1.05]">{fullName(p)}</h1>
+            <p className="mt-[0.3em] text-[1.05em] font-medium leading-snug" style={{ color: 'var(--accent-ink)' }}>
               {p.title}
             </p>
           </div>
         </div>
-        <ContactList personal={p} className="mt-1 shrink-0 text-[0.85em] text-ink-2" iconClass="text-muted" />
+        <ContactList personal={p} className="shrink-0 text-[0.85em] text-ink-2" iconClass="text-muted" />
       </header>
 
       <div className="mt-[1.4em] h-px w-full" style={{ background: 'var(--color-line)' }} />

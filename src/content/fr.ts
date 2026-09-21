@@ -61,7 +61,7 @@ export const fr: LangContent = {
   ],
   variants: {
     corporate: {
-      title: 'Technicien informatique — Opérations numériques & e-mailing',
+      title: 'Technicien informatique — Opérations & e-mailing',
       summary:
         'Technicien spécialisé en réseaux informatiques, à l’aise avec le travail sur ordinateur de longue durée, le traitement de fichiers et les outils d’e-mailing : autorépondeurs, séquences d’e-mails, formulaires, hébergement. Rigoureux et organisé, je suis les procédures, je vérifie mon travail et j’apprends rapidement un logiciel interne.',
       experiences: [],

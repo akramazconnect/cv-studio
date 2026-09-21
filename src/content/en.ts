@@ -57,7 +57,7 @@ export const en: LangContent = {
   ],
   variants: {
     corporate: {
-      title: 'IT Technician — Digital operations & email marketing',
+      title: 'IT Technician — Operations & email marketing',
       summary:
         'Specialised technician in computer networks, comfortable with long hours of computer-based work, file handling and email marketing tools: autoresponders, email sequences, forms, hosting. Rigorous and organised: I follow procedures, check my work and learn internal software quickly.',
       experiences: [],
