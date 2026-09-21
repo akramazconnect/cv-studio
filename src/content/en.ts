@@ -48,6 +48,7 @@ export const en: LangContent = {
       end: 'Year',
       note: 'About two years of training: networks, Windows environment, maintenance, support',
     },
+    { degree: 'Baccalauréat in Physical Sciences (high-school diploma)', school: '', location: '', start: '', end: 'Year', note: '' },
   ],
   languages: [
     { name: 'Arabic', level: 'Native' },

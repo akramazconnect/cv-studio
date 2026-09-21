@@ -52,6 +52,7 @@ export const fr: LangContent = {
       end: 'Année',
       note: 'Formation d’environ deux ans : réseaux, environnement Windows, maintenance, support',
     },
+    { degree: 'Baccalauréat Sciences Physiques', school: '', location: '', start: '', end: 'Année', note: '' },
   ],
   languages: [
     { name: 'Arabe', level: 'Langue maternelle' },

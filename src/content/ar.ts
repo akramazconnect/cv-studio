@@ -48,6 +48,7 @@ export const ar: LangContent = {
       end: 'السنة',
       note: 'تكوين لمدة سنتين تقريبًا: الشبكات، بيئة Windows، الصيانة، الدعم',
     },
+    { degree: 'باكالوريا علوم فيزيائية', school: '', location: '', start: '', end: 'السنة', note: '' },
   ],
   languages: [
     { name: 'العربية', level: 'اللغة الأم' },
