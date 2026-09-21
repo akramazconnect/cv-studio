@@ -9,12 +9,17 @@ const content: Record<Lang, LangContent> = { fr, en, ar }
 
 const withIds = <T extends object>(items: T[]) => items.map((item) => ({ ...item, id: uid() }))
 
-type Saved = { data?: Partial<Record<`${VariantId}:${Lang}`, CVData>>; themes?: Partial<Record<VariantId, Theme>> }
+type Saved = { savedAt?: string; data?: Partial<Record<`${VariantId}:${Lang}`, CVData>>; themes?: Partial<Record<VariantId, Theme>> }
 
 // src/content/local.json is git-ignored: it holds the owner's personal profile on this
 // machine only. The glob resolves to {} when the file doesn't exist (e.g. on GitHub).
 const localModules = import.meta.glob<{ default: Saved }>('./local.json', { eager: true })
 const LOCAL: Saved = Object.values(localModules)[0]?.default ?? {}
+
+/** Stamp of the local profile file; changes whenever it is rewritten (by the app or by hand). */
+export const LOCAL_STAMP = LOCAL.savedAt ?? ''
+export const LOCAL_KEYS = Object.keys(LOCAL.data ?? {})
+export const LOCAL_THEME_KEYS = Object.keys(LOCAL.themes ?? {}) as VariantId[]
 
 /** Theme saved locally on this machine, if any */
 export const savedTheme = (variant: VariantId): Theme | undefined => LOCAL.themes?.[variant]

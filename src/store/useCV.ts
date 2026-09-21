@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { CVData, Lang, Theme, VariantId } from '../types'
-import { buildDefault } from '../content'
+import { LOCAL_KEYS, LOCAL_STAMP, LOCAL_THEME_KEYS, buildDefault } from '../content'
 import { defaultTheme } from '../variants'
 
 type Key = `${VariantId}:${Lang}`
@@ -12,12 +12,15 @@ interface State {
   variant: VariantId
   data: Partial<Record<Key, CVData>>
   themes: Partial<Record<VariantId, Theme>>
+  /** Stamp of the local.json this browser last synced with */
+  localStamp: string
   setLang: (lang: Lang) => void
   setVariant: (variant: VariantId) => void
   update: (patch: (d: CVData) => CVData) => void
   updateTheme: (patch: Partial<Theme>) => void
   reset: () => void
   importAll: (payload: { data?: State['data']; themes?: State['themes'] }) => void
+  setLocalStamp: (stamp: string) => void
 }
 
 // v1 shipped invented sample employers; used by the persist migration below.
@@ -50,6 +53,8 @@ export const useCV = create<State>()(
       variant: 'corporate',
       data: {},
       themes: {},
+      localStamp: '',
+      setLocalStamp: (localStamp) => set({ localStamp }),
       setLang: (lang) => set({ lang }),
       setVariant: (variant) => set({ variant }),
       update: (patch) => {
@@ -85,6 +90,17 @@ export const useCV = create<State>()(
           state.data = Object.fromEntries(Object.entries(state.data).filter(([, v]) => v && !stale(v)))
         }
         return state as State
+      },
+      // local.json was rewritten since this browser last synced with it (e.g. edited outside the
+      // app): the file is the newer source, so drop the stored copies of the keys it provides.
+      merge: (persisted, current) => {
+        const state = { ...current, ...(persisted as Partial<State>) }
+        if (LOCAL_STAMP && state.localStamp !== LOCAL_STAMP) {
+          state.data = Object.fromEntries(Object.entries(state.data ?? {}).filter(([k]) => !LOCAL_KEYS.includes(k)))
+          state.themes = Object.fromEntries(Object.entries(state.themes ?? {}).filter(([k]) => !LOCAL_THEME_KEYS.includes(k as VariantId)))
+          state.localStamp = LOCAL_STAMP
+        }
+        return state
       },
     },
   ),

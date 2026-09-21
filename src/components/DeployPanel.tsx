@@ -58,8 +58,9 @@ export default function DeployPanel() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(kind === 'save' ? { state: snapshot() } : { remote: remoteInput.trim() || undefined }),
       })
-      const j = (await r.json()) as { ok?: boolean; log?: string[]; error?: string }
+      const j = (await r.json()) as { ok?: boolean; log?: string[]; error?: string; savedAt?: string }
       const ok = !!j.ok
+      if (ok && kind === 'save' && j.savedAt) useCV.getState().setLocalStamp(j.savedAt)
       setResult({ ok, log: j.log ?? [], msg: ok ? (kind === 'save' ? t.saved : t.done) : j.error === 'NO_REMOTE' ? t.noRemote : t.failed })
       if (ok) setRemoteInput('')
     } catch (e) {

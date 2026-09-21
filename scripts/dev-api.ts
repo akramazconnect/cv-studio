@@ -82,10 +82,12 @@ export default function devApi(): Plugin {
         }
       }
 
-      const save = (state: unknown) => {
+      const save = (state: object) => {
         const file = resolve(root, LOCAL_FILE)
         mkdirSync(dirname(file), { recursive: true })
-        writeFileSync(file, JSON.stringify(state, null, 2) + '\n', 'utf8')
+        const savedAt = new Date().toISOString()
+        writeFileSync(file, JSON.stringify({ savedAt, ...state }, null, 2) + '\n', 'utf8')
+        return savedAt
       }
 
       // State handed to the headless print page, keyed by a one-shot id
@@ -144,8 +146,8 @@ export default function devApi(): Plugin {
           }
 
           if (req.url === '/__api/save') {
-            save(body.state ?? {})
-            return json(res, 200, { ok: true, log: [`Saved ${LOCAL_FILE}`] })
+            const savedAt = save((body.state as object) ?? {})
+            return json(res, 200, { ok: true, savedAt, log: [`Saved ${LOCAL_FILE}`] })
           }
 
           if (req.url === '/__api/deploy') {
